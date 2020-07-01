@@ -11,11 +11,35 @@
 </head>
 
 <body>
-	<h3>나라장터 조회</h3>
-	<form action="g2b" method="post">
-		시작 날짜<input type="date" name="startDate" /> <input type="time"
-			name="startTime" /> 끝 날짜<input type="date" name="endDate" /> <input
-			type="time" name="endTime" /> <input type="submit" name="조회" />
+	<form action="g2b" class="request-form ftco-animate bg-primary">
+		<h2>조회 기간 설정하기</h2>
+		<div class="d-flex">
+			<div class="form-group mr-2">
+				<div>
+					<label for="" class="label">From</label>
+				</div>
+				<div>
+					<input type="date" name="startDate" /> <input type="time"
+						name="startTime" />
+				</div>
+
+			</div>
+		</div>
+		<div class="d-flex">
+			<div class="form-group mr-2">
+				<div>
+					<label for="" class="label">To</label>
+				</div>
+				<div>
+					<input type="date" name="endDate" /> <input type="time"
+						name="endTime" />
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="form-group">
+			<input type="submit" value="조회" class="btn btn-secondary py-3 px-4">
+		</div>
 	</form>
 
 	<%
@@ -33,19 +57,8 @@
 				<th scope="cols">공고 번호</th>
 				<th scope="cols">공고명</th>
 				<th scope="cols">공고 기관</th>
-				<th scope="cols">수요 기관</th>
-				<th scope="cols">입찰 방식</th>
-				<th scope="cols">계약 방식</th>
-				<th scope="cols">담당자</th>
-				<th scope="cols">담당자 번호</th>
-				<th scope="cols">담당자 메일</th>
-				<th scope="cols">접수방식</th>
 				<th scope="cols">입찰 개시일자</th>
 				<th scope="cols">입찰 마감일자</th>
-				<th scope="cols">첨부파일1</th>
-				<th scope="cols">첨부파일2</th>
-				<th scope="cols">첨부파일명1</th>
-				<th scope="cols">첨부파일명2</th>
 				<th scope="cols">공고 예산</th>
 				<th scope="cols">주공종명</th>
 			</tr>
@@ -60,45 +73,21 @@
 						String bidNtceNo = dto.getBidNtceNo();
 						String bidNtceNm = dto.getBidNtceNm();
 						String ntceInsttNm = dto.getNtceInsttNm();
-						String dminsttNm = dto.getDminsttNm();
-						String bidMethdNm = dto.getBidMethdNm();
-						String cntrctCnclsMthdNm = dto.getCntrctCnclsMthdNm();
-						String ntceInsttOfclNm = dto.getNtceInsttOfclNm();
-						String ntceInsttOfclTelNo = dto.getNtceInsttOfclTelNo();
-						String ntceInsttOfclEmailAdrs = dto.getNtceInsttOfclEmailAdrs();
-						String cmmnSpldmdAgrmntRcptdocMethd = dto.getCmmnSpldmdAgrmntRcptdocMethd();
 						String bidBeginDt = dto.getBidBeginDt();
 						String bidClseDt = dto.getBidClseDt();
-						String ntceSpecDocUrl1 = dto.getNtceSpecDocUrl1();
-						String ntceSpecDocUrl2 = dto.getNtceSpecDocUrl2();
-						String ntceSpecFileNm1 = dto.getNtceSpecFileNm1();
-						String ntceSpecFileNm2 = dto.getNtceSpecFileNm2();
 						String bdgtAmt = dto.getBdgtAmt();
 						String mainCnsttyNm = dto.getMainCnsttyNm();
-
-						System.out.println(mainCnsttyNm);
+						String bidNtceDtlUrl = dto.getBidNtceDtlUrl();
 			%>
 
 			<tr>
 				<td><%=bidNtceNo%></td>
-				<td><%=bidNtceNm%></td>
+				<td><a class="g2bLink" href="<%=bidNtceDtlUrl%>"><%=bidNtceNm%></a></td>
 				<td><%=ntceInsttNm%></td>
-				<td><%=dminsttNm%></td>
-				<td><%=bidMethdNm%></td>
-				<td><%=cntrctCnclsMthdNm%></td>
-				<td><%=ntceInsttOfclNm%></td>
-				<td><%=ntceInsttOfclTelNo%></td>
-				<td><%=ntceInsttOfclEmailAdrs%></td>
-				<td><%=cmmnSpldmdAgrmntRcptdocMethd%></td>
 				<td><%=bidBeginDt%></td>
 				<td><%=bidClseDt%></td>
-				<td><%=ntceSpecDocUrl1%></td>
-				<td><%=ntceSpecDocUrl2%></td>
-				<td><%=ntceSpecFileNm1%></td>
-				<td><%=ntceSpecFileNm2%></td>
 				<td><%=bdgtAmt%></td>
 				<td><%=mainCnsttyNm%></td>
-			</tr>
 			</ul>
 			<%
 				}

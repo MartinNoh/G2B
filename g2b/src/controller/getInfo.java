@@ -16,12 +16,14 @@ import model.g2bDTO;
 public class getInfo {
 
 	// API, Get, JSON, body tag
-	public static JsonObject getJsonBodyInfo(int i, String start, String end) throws Exception{
-		
-		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1230000/BidPublicInfoService/getBidPblancListInfoCnstwk");
+	public static JsonObject getJsonBodyInfo(int i, String start, String end) throws Exception {
+
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://apis.data.go.kr/1230000/BidPublicInfoService/getBidPblancListInfoCnstwk");
 		urlBuilder.append("?" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("" + i, "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
-		urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + "WETz3nldqMWyApLPTPNKw06qUG%2FYt7tNaO3T2ciGb4c%2B8%2FcKTx3z48RT%2BEgcCMICrR6rkBYCOxYRZnIbZ5wE6w%3D%3D");
+		urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "="
+				+ "WETz3nldqMWyApLPTPNKw06qUG%2FYt7tNaO3T2ciGb4c%2B8%2FcKTx3z48RT%2BEgcCMICrR6rkBYCOxYRZnIbZ5wE6w%3D%3D");
 		urlBuilder.append("&" + URLEncoder.encode("inqryDiv", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("inqryBgnDt", "UTF-8") + "=" + URLEncoder.encode(start, "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
@@ -46,49 +48,39 @@ public class getInfo {
 		}
 		rd.close();
 		conn.disconnect();
-		
-        String str = sb.toString();
-        
-        JsonObject jObject = JsonParser.parseString(str).getAsJsonObject();
-        
-        JsonObject responseObject = jObject.getAsJsonObject("response");
-        JsonObject bodyObject = responseObject.getAsJsonObject("body");
-        
-        return bodyObject;
+
+		String str = sb.toString();
+
+		JsonObject jObject = JsonParser.parseString(str).getAsJsonObject();
+
+		JsonObject responseObject = jObject.getAsJsonObject("response");
+		JsonObject bodyObject = responseObject.getAsJsonObject("body");
+
+		return bodyObject;
 	}
-	
+
 	public ArrayList<g2bDTO> getValueList(String start, String end) throws Exception {
-		
+
 		JsonObject bodyObject = getJsonBodyInfo(1, start, end);
 		int totalCount = bodyObject.get("totalCount").getAsInt();
 
 		ArrayList<g2bDTO> al = new ArrayList<>();
-			JsonObject bodyObject2 = getInfo.getJsonBodyInfo(totalCount, start, end);
-			JsonArray itemsArray = bodyObject2.getAsJsonArray("items");
+		JsonObject bodyObject2 = getInfo.getJsonBodyInfo(totalCount, start, end);
+		JsonArray itemsArray = bodyObject2.getAsJsonArray("items");
 
-			for (int j = 0; j < itemsArray.size(); j++) {
-				JsonObject jObject = itemsArray.get(j).getAsJsonObject();
-				g2bDTO dto = new g2bDTO();
-				dto.setBidNtceNo(jObject.get("bidNtceNo").getAsString());
-				dto.setBidNtceNm(jObject.get("bidNtceNm").getAsString());
-				dto.setNtceInsttNm(jObject.get("ntceInsttNm").getAsString());
-				dto.setDminsttNm(jObject.get("dminsttNm").getAsString());
-				dto.setBidMethdNm(jObject.get("bidMethdNm").getAsString());
-				dto.setCntrctCnclsMthdNm(jObject.get("cntrctCnclsMthdNm").getAsString());
-				dto.setNtceInsttOfclNm(jObject.get("ntceInsttOfclNm").getAsString());
-				dto.setNtceInsttOfclTelNo(jObject.get("ntceInsttOfclTelNo").getAsString());
-				dto.setNtceInsttOfclEmailAdrs(jObject.get("ntceInsttOfclEmailAdrs").getAsString());
-				dto.setCmmnSpldmdAgrmntRcptdocMethd(jObject.get("cmmnSpldmdAgrmntRcptdocMethd").getAsString());
-				dto.setBidBeginDt(jObject.get("bidBeginDt").getAsString());
-				dto.setBidClseDt(jObject.get("bidClseDt").getAsString());
-				dto.setNtceSpecDocUrl1(jObject.get("ntceSpecDocUrl1").getAsString());
-				dto.setNtceSpecDocUrl2(jObject.get("ntceSpecDocUrl2").getAsString());
-				dto.setNtceSpecFileNm1(jObject.get("ntceSpecFileNm1").getAsString());
-				dto.setNtceSpecFileNm2(jObject.get("ntceSpecFileNm2").getAsString());
-				dto.setBdgtAmt(jObject.get("bdgtAmt").getAsString());
-				dto.setMainCnsttyNm(jObject.get("mainCnsttyNm").getAsString());
-				al.add(dto);
-			}
+		for (int j = 0; j < itemsArray.size(); j++) {
+			JsonObject jObject = itemsArray.get(j).getAsJsonObject();
+			g2bDTO dto = new g2bDTO();
+			dto.setBidNtceNo(jObject.get("bidNtceNo").getAsString());
+			dto.setBidNtceNm(jObject.get("bidNtceNm").getAsString());
+			dto.setNtceInsttNm(jObject.get("ntceInsttNm").getAsString());
+			dto.setBidBeginDt(jObject.get("bidBeginDt").getAsString());
+			dto.setBidClseDt(jObject.get("bidClseDt").getAsString());
+			dto.setBdgtAmt(jObject.get("bdgtAmt").getAsString());
+			dto.setMainCnsttyNm(jObject.get("mainCnsttyNm").getAsString());
+			dto.setBidNtceDtlUrl(jObject.get("bidNtceDtlUrl").getAsString());
+			al.add(dto);
+		}
 
 		return al;
 	}
