@@ -32,41 +32,18 @@ public class g2b extends HttpServlet {
 
 		getInfo getInfo = new getInfo();
 		ArrayList<g2bDTO> al;
-
 		try {
 			al = getInfo.getValueList(startDate, endDate);
-
-			g2bDTO dto = al.get(10);
-
-			request.setAttribute("bidNtceNo", dto.getBidNtceNo());
-			request.setAttribute("bidNtceNm", dto.getBidNtceNm());
-			request.setAttribute("ntceInsttNm", dto.getNtceInsttNm());
-			request.setAttribute("dminsttNm", dto.getDminsttNm());
-			request.setAttribute("bidMethdNm", dto.getBidMethdNm());
-			request.setAttribute("cntrctCnclsMthdNm", dto.getCntrctCnclsMthdNm());
-			request.setAttribute("ntceInsttOfclNm", dto.getNtceInsttOfclNm());
-			request.setAttribute("ntceInsttOfclTelNo", dto.getNtceInsttOfclTelNo());
-			request.setAttribute("ntceInsttOfclEmailAdrs", dto.getNtceInsttOfclEmailAdrs());
-			request.setAttribute("cmmnSpldmdAgrmntRcptdocMethd", dto.getCmmnSpldmdAgrmntRcptdocMethd());
-			request.setAttribute("bidBeginDt", dto.getBidBeginDt());
-			request.setAttribute("bidClseDt", dto.getBidClseDt());
-			request.setAttribute("ntceSpecDocUrl1", dto.getNtceSpecDocUrl1());
-			request.setAttribute("ntceSpecDocUrl2", dto.getNtceSpecDocUrl2());
-			request.setAttribute("ntceSpecFileNm1", dto.getNtceSpecFileNm1());
-			request.setAttribute("ntceSpecFileNm2", dto.getNtceSpecFileNm2());
-			request.setAttribute("bdgtAmt", dto.getBdgtAmt());
-			request.setAttribute("mainCnsttyNm", dto.getMainCnsttyNm());
+			request.setAttribute("al", al);
 
 			request.setAttribute("startDate", startDate);
 			request.setAttribute("endDate", endDate);
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/index.jsp");
-
-		dispatcher.forward(request, response);
+		;
+		getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	private String onlyNumber(String str) {
