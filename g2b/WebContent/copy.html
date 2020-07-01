@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/ionicons.min.css">
+
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/table.css">
+
+</head>
+<body>
+
+	<section position="fixed" class="ftco-no-pt bg-light">
+		<div class="row no-gutters">
+			<div class="col-md-4 d-flex align-items-center">
+				<form action="#" class="request-form ftco-animate bg-primary">
+					<h2>조회 기간 설정하기</h2>
+					<div class="d-flex">
+						<div class="form-group mr-2">
+							<div>
+								<label for="" class="label">From</label>
+							</div>
+							<div>
+								<input type="date" name="startDate" /> <input type="time"
+									name="startTime" />
+							</div>
+
+						</div>
+					</div>
+					<div class="d-flex">
+						<div class="form-group mr-2">
+							<div>
+								<label for="" class="label">To</label>
+							</div>
+							<div>
+								<input type="date" name="endDate" /> <input type="time"
+									name="endTime" />
+							</div>
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						<input type="submit" value="조회"
+							class="btn btn-secondary py-3 px-4">
+					</div>
+				</form>
+			</div>
+
+
+
+
+			<div class="col-md-8 d-flex align-items-center">
+				<div class="services-wrap">
+					<table class="type11">
+						<thead>
+							<tr>
+								<th scope="cols">공고 번호</th>
+								<th scope="cols">공고명</th>
+								<th scope="cols">공고 기관</th>
+								<th scope="cols">수요 기관</th>
+								<th scope="cols">입찰 방식</th>
+								<th scope="cols">계약 방식</th>
+								<th scope="cols">담당자</th>
+								<th scope="cols">담당자 번호</th>
+								<th scope="cols">담당자 메일</th>
+								<th scope="cols">접수방식</th>
+								<th scope="cols">입찰 개시일자</th>
+								<th scope="cols">입찰 마감일자</th>
+								<th scope="cols">첨부파일1</th>
+								<th scope="cols">첨부파일2</th>
+								<th scope="cols">첨부파일명1</th>
+								<th scope="cols">첨부파일명2</th>
+								<th scope="cols">공고 예산</th>
+								<th scope="cols">주공종명</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+	<%
+		ArrayList<g2bDTO> al = (ArrayList<g2bDTO>) request.getAttribute("al");
+
+		if (al != null) {
+			for (g2bDTO dto : al) {
+				String bidNtceNo = dto.getBidNtceNo();
+				String bidNtceNm = dto.getBidNtceNm();
+				String ntceInsttNm = dto.getNtceInsttNm();
+				String dminsttNm = dto.getDminsttNm();
+				String bidMethdNm = dto.getBidMethdNm();
+				String cntrctCnclsMthdNm = dto.getCntrctCnclsMthdNm();
+				String ntceInsttOfclNm = dto.getNtceInsttOfclNm();
+				String ntceInsttOfclTelNo = dto.getNtceInsttOfclTelNo();
+				String ntceInsttOfclEmailAdrs = dto.getNtceInsttOfclEmailAdrs();
+				String cmmnSpldmdAgrmntRcptdocMethd = dto.getCmmnSpldmdAgrmntRcptdocMethd();
+				String bidBeginDt = dto.getBidBeginDt();
+				String bidClseDt = dto.getBidClseDt();
+				String ntceSpecDocUrl1 = dto.getNtceSpecDocUrl1();
+				String ntceSpecDocUrl2 = dto.getNtceSpecDocUrl2();
+				String ntceSpecFileNm1 = dto.getNtceSpecFileNm1();
+				String ntceSpecFileNm2 = dto.getNtceSpecFileNm2();
+				String bdgtAmt = dto.getBdgtAmt();
+				String mainCnsttyNm = dto.getMainCnsttyNm();
+	%>
+							<tr>
+								<td><%=bidNtceNo%></td>
+								<td><%=bidNtceNm%></td>
+								<td><%=ntceInsttNm%></td>
+								<td><%=dminsttNm%></td>
+								<td><%=bidMethdNm%></td>
+								<td><%=cntrctCnclsMthdNm%></td>
+								<td><%=ntceInsttOfclNm%></td>
+								<td><%=ntceInsttOfclTelNo%></td>
+								<td><%=ntceInsttOfclEmailAdrs%></td>
+								<td><%=cmmnSpldmdAgrmntRcptdocMethd%></td>
+								<td><%=bidBeginDt%></td>
+								<td><%=bidClseDt%></td>
+								<td><%=ntceSpecDocUrl1%></td>
+								<td><%=ntceSpecDocUrl2%></td>
+								<td><%=ntceSpecFileNm1%></td>
+								<td><%=ntceSpecFileNm2%></td>
+								<td><%=bdgtAmt%></td>
+								<td><%=mainCnsttyNm%></td>
+							</tr>
+	<%
+		}
+		}
+	%>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	</section>
+
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke="#eeeeee" />
+			
+			<circle class="path" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+	</div>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/jquery.timepicker.min.js"></script>
+	<script src="js/scrollax.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="js/google-map.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+</html>
