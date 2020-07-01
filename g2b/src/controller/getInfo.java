@@ -8,7 +8,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -16,9 +15,9 @@ import model.g2bDTO;
 
 public class getInfo {
 
-	// API, Get
-	// page, start(yyyymmddhhmm), end(yyyymmddhhmm)
-	public static String getStringValue(int i, String start, String end) throws Exception {
+	// API, Get, JSON, body tag
+	public static JsonObject getJsonBodyInfo(int i, String start, String end) throws Exception{
+		
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1230000/BidPublicInfoService/getBidPblancListInfoCnstwk");
 		urlBuilder.append("?" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("" + i, "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
@@ -47,17 +46,10 @@ public class getInfo {
 		}
 		rd.close();
 		conn.disconnect();
-
-		return sb.toString();
-	}
-	
-	// JSON Info, body tag
-	public static JsonObject getJsonBodyInfo(int i, String start, String end) throws Exception{
 		
-        String str = getStringValue(i, start ,end);
+        String str = sb.toString();
         
-        JsonElement jElement = new JsonParser().parse(str);
-        JsonObject jObject = jElement.getAsJsonObject();
+        JsonObject jObject = JsonParser.parseString(str).getAsJsonObject();
         
         JsonObject responseObject = jObject.getAsJsonObject("response");
         JsonObject bodyObject = responseObject.getAsJsonObject("body");
@@ -65,7 +57,7 @@ public class getInfo {
         return bodyObject;
 	}
 	
-	public static ArrayList<g2bDTO> getJsonValue(String start, String end) throws Exception {
+	public ArrayList<g2bDTO> getValueList(String start, String end) throws Exception {
 		
 		JsonObject bodyObject = getJsonBodyInfo(1, start, end);
 		int totalCount = bodyObject.get("totalCount").getAsInt();
