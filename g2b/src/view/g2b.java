@@ -36,6 +36,10 @@ public class g2b extends HttpServlet {
 			al = getInfo.getValueList(startDate, endDate);
 			request.setAttribute("alSize", Integer.toString(al.size()));
 			request.setAttribute("al", al);
+			
+			request.setAttribute("end", endDate);
+			request.setAttribute("start", startDate);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

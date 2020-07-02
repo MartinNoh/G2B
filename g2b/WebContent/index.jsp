@@ -26,7 +26,7 @@
 	<br />
 	<div align="center">
 		<form action="g2b">
-			<table>
+			<table class="date">
 				<tr>
 					<td>From</td>
 					<td>To</td>
@@ -47,21 +47,25 @@
 	<br />
 	<br />
 	<%
-		String alSize = (String) request.getAttribute("alSize");
+		String start = "조회기간 : " + (String) request.getAttribute("start");
+		String end = " ~ " + (String) request.getAttribute("end");
+		String date = start + end;
+		String alSize = "총 조회수 : " + (String) request.getAttribute("alSize");
 	%>
-	<h2 class="alSize" align="center">총 조회수 : ${alSize}</h2>
+	<h3 align="center"><%=date%></h3>
+	<h2 align="center"><%=alSize%></h2>
 	<br />
 
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th scope="cols">공고 번호</th>
-				<th scope="cols">공고명</th>
-				<th scope="cols">공고 기관</th>
-				<th scope="cols">입찰 개시일자</th>
-				<th scope="cols">입찰 마감일자</th>
-				<th scope="cols">공고 예산</th>
-				<th scope="cols">주공종명</th>
+				<th>공고 번호</th>
+				<th>공고명</th>
+				<th>공고 기관</th>
+				<th>입찰 개시일자</th>
+				<th>입찰 마감일자</th>
+				<th>공고 예산</th>
+				<th>주공종명</th>
 			</tr>
 		</thead>
 		<tbody>
