@@ -6,52 +6,53 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="index.css">
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <title>나라장터</title>
-<link rel="stylesheet" href="css/table.css">
 </head>
 
 <body>
-	<form action="g2b" class="request-form ftco-animate bg-primary">
-		<h2>조회 기간 설정하기</h2>
-		<div class="d-flex">
-			<div class="form-group mr-2">
-				<div>
-					<label for="" class="label">From</label>
-				</div>
-				<div>
-					<input type="date" name="startDate" /> <input type="time"
-						name="startTime" />
-				</div>
+	<br />
+	<br />
+	<div align="center">
+		<form action="g2b">
+			<table>
+				<tr>
+					<td>From</td>
+					<td>To</td>
+				</tr>
+				<tr>
+					<td><input type="date" name="startDate" /> <input type="time"
+						name="startTime" /></td>
+					<td><input type="date" name="endDate" /> <input type="time"
+						name="endTime" /></td>
+				</tr>
+			</table>
+			<br /> <input type="submit" value="조회">
+		</form>
+	</div>
 
-			</div>
-		</div>
-		<div class="d-flex">
-			<div class="form-group mr-2">
-				<div>
-					<label for="" class="label">To</label>
-				</div>
-				<div>
-					<input type="date" name="endDate" /> <input type="time"
-						name="endTime" />
-				</div>
-			</div>
-		</div>
-		<br />
-		<div class="form-group">
-			<input type="submit" value="조회" class="btn btn-secondary py-3 px-4">
-		</div>
-	</form>
-
+	<br />
+	<br />
+	<br />
+	<br />
 	<%
-		String startDate = (String) request.getAttribute("startDate");
-		String endDate = (String) request.getAttribute("endDate");
+		String alSize = (String) request.getAttribute("alSize");
 	%>
-	<ul class="date">
-		<li>${startDate}</li>
-		<li>${endDate}</li>
-	</ul>
+	<h2 class="alSize" align="center">총 조회수 : ${alSize}</h2>
+	<br />
 
-	<table class="type11">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th scope="cols">공고 번호</th>
@@ -88,11 +89,13 @@
 				<td><%=bidClseDt%></td>
 				<td><%=bdgtAmt%></td>
 				<td><%=mainCnsttyNm%></td>
-			</ul>
+			</tr>
+
 			<%
 				}
 				}
 			%>
+
 		</tbody>
 	</table>
 </body>

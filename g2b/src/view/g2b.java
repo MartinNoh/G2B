@@ -34,10 +34,8 @@ public class g2b extends HttpServlet {
 		ArrayList<g2bDTO> al;
 		try {
 			al = getInfo.getValueList(startDate, endDate);
+			request.setAttribute("alSize", Integer.toString(al.size()));
 			request.setAttribute("al", al);
-
-			request.setAttribute("startDate", startDate);
-			request.setAttribute("endDate", endDate);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
