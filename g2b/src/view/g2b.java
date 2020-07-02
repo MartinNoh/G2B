@@ -24,10 +24,16 @@ public class g2b extends HttpServlet {
 
 		String startDate = request.getParameter("startDate");
 		String startTime = request.getParameter("startTime");
-		startDate = onlyNumber(startDate + startTime);
-
 		String endDate = request.getParameter("endDate");
 		String endTime = request.getParameter("endTime");
+		
+		System.out.println(startDate);
+		System.out.println(startTime);
+		System.out.println(startDate);
+		System.out.println(endDate);
+		System.out.println(endTime);
+		
+		startDate = onlyNumber(startDate + startTime);
 		endDate = onlyNumber(endDate + endTime);
 
 		getInfo getInfo = new getInfo();
@@ -37,8 +43,8 @@ public class g2b extends HttpServlet {
 			request.setAttribute("alSize", Integer.toString(al.size()));
 			request.setAttribute("al", al);
 			
-			request.setAttribute("end", endDate);
 			request.setAttribute("start", startDate);
+			request.setAttribute("end", endDate);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

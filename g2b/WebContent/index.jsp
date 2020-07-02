@@ -5,28 +5,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <link rel="stylesheet" href="index.css">
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <title>나라장터</title>
 </head>
 
-<body>
-	<br />
-	<br />
-	<div align="center">
-		<h1>나라장터 공고조회</h1>
+<body role="document">
+
+
+
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-fixed-top navbar-expand-sm">
+	<div class="content" align="center">
 		<br />
+		<h4>나라장터 조회하기</h4>
 		<form action="g2b">
 			<table class="date">
 				<tr>
@@ -40,46 +36,61 @@
 						name="endTime" /></td>
 				</tr>
 			</table>
-			<br /> <input type="submit" value="조회">
+			<br />
+			<p>
+				<button class="btn btn-lg btn-success" type="submit">조회</button>
+			</p>
 		</form>
 	</div>
+	</nav>
 
-	<br />
-	<br />
-	<br />
-	<br />
 	<%
 		String start = (String) request.getAttribute("start");
 		String end = (String) request.getAttribute("end");
 		String alSize = (String) request.getAttribute("alSize");
 	%>
 	<br />
-	<table class="table">
+	<table class="table content table-hover">
 		<thead>
-				<%
-					String date = "";
-					if (start == null || end == null) {
-						start = "";
-						end = "";
-					} else {
-						date = start.substring(0, 4) + "." + start.substring(4, 6) + "." + start.substring(6, 8) + " "
-								+ start.substring(8, 10) + ":" + start.substring(10, 12) + " ~ " + end.substring(0, 4) + "." + end.substring(4, 6) + "." + end.substring(6, 8) + " "
-								+ end.substring(8, 10) + ":" + end.substring(10, 12);
-					}
-					if (alSize == null)
-						alSize = "";
-				%>
+			<%
+				StringBuffer strBff = new StringBuffer();
+
+				if (start == null || end == null) {
+					start = "";
+					end = "";
+				} else {
+					strBff.append(start.substring(0, 4));
+					strBff.append(".");
+					strBff.append(start.substring(4, 6));
+					strBff.append(".");
+					strBff.append(start.substring(6, 8));
+					strBff.append(" ");
+					strBff.append(start.substring(8, 10));
+					strBff.append(":");
+					strBff.append(start.substring(10, 12));
+					strBff.append(" ~ ");
+					strBff.append(end.substring(0, 4));
+					strBff.append(".");
+					strBff.append(end.substring(4, 6));
+					strBff.append(".");
+					strBff.append(end.substring(6, 8));
+					strBff.append(" ");
+					strBff.append(end.substring(8, 10));
+					strBff.append(":");
+					strBff.append(end.substring(10, 12));
+				}
+				if (alSize == null)
+					alSize = "";
+			%>
 			<tr>
 				<td>조회기간</td>
-				<td><%=date%></td>
+				<td colspan="6"><%=strBff.toString()%></td>
 			</tr>
 			<tr>
 				<td>총 조회수</td>
-				<td><%=alSize%></td>
+				<td colspan="6"><%=alSize%></td>
 			</tr>
 		</thead>
-	</table>
-	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>공고 번호</th>
@@ -125,6 +136,22 @@
 
 		</tbody>
 	</table>
+
+
+
+	<!-- essential jquery -->
+	<script src="//code.jquery.com/jquery.min.js"></script>
+
+	<!-- essential BootStrap -->
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

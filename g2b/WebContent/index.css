@@ -1,12 +1,28 @@
 @charset "UTF-8";
 
+div.content {
+	width: 900px;
+	height: 280px;
+	margin: auto;
+	border-bottom-left-radius: 2em;
+	border-bottom-right-radius: 2em;
+	background-color: ivory;
+}
+
 table, tr, th, td {
 	text-align: center;
 	border: 1px solid black;
 }
 
-table.date {
-	width: 50%;
-	height: 100px;
+table.date   {
 	margin: auto;
+	width: 60%;
+	height: 100px;
+}
+
+table.content {
+	position: relative;
+	top: 300px;
+	margin: auto;
+	width: 90%;
 }
