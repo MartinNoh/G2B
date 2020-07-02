@@ -25,6 +25,8 @@
 	<br />
 	<br />
 	<div align="center">
+		<h1>나라장터 공고조회</h1>
+		<br />
 		<form action="g2b">
 			<table class="date">
 				<tr>
@@ -47,15 +49,36 @@
 	<br />
 	<br />
 	<%
-		String start = "조회기간 : " + (String) request.getAttribute("start");
-		String end = " ~ " + (String) request.getAttribute("end");
-		String date = start + end;
-		String alSize = "총 조회수 : " + (String) request.getAttribute("alSize");
+		String start = (String) request.getAttribute("start");
+		String end = (String) request.getAttribute("end");
+		String alSize = (String) request.getAttribute("alSize");
 	%>
-	<h3 align="center"><%=date%></h3>
-	<h2 align="center"><%=alSize%></h2>
 	<br />
-
+	<table class="table">
+		<thead>
+				<%
+					String date = "";
+					if (start == null || end == null) {
+						start = "";
+						end = "";
+					} else {
+						date = start.substring(0, 4) + "." + start.substring(4, 6) + "." + start.substring(6, 8) + " "
+								+ start.substring(8, 10) + ":" + start.substring(10, 12) + " ~ " + end.substring(0, 4) + "." + end.substring(4, 6) + "." + end.substring(6, 8) + " "
+								+ end.substring(8, 10) + ":" + end.substring(10, 12);
+					}
+					if (alSize == null)
+						alSize = "";
+				%>
+			<tr>
+				<td>조회기간</td>
+				<td><%=date%></td>
+			</tr>
+			<tr>
+				<td>총 조회수</td>
+				<td><%=alSize%></td>
+			</tr>
+		</thead>
+	</table>
 	<table class="table table-hover">
 		<thead>
 			<tr>
