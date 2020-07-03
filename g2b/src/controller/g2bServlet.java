@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.getInfo;
 import model.g2bDTO;
 
 @WebServlet("/g2b")
-public class g2b extends HttpServlet {
+public class g2bServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -36,10 +35,10 @@ public class g2b extends HttpServlet {
 		startDate = onlyNumber(startDate + startTime);
 		endDate = onlyNumber(endDate + endTime);
 
-		getInfo getInfo = new getInfo();
+		getJSON getJSON = new getJSON();
 		ArrayList<g2bDTO> al;
 		try {
-			al = getInfo.getValueList(startDate, endDate);
+			al = getJSON.getValueList(startDate, endDate);
 			request.setAttribute("alSize", Integer.toString(al.size()));
 			request.setAttribute("al", al);
 			

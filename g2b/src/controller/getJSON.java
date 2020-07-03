@@ -13,7 +13,7 @@ import com.google.gson.JsonParser;
 
 import model.g2bDTO;
 
-public class getInfo {
+public class getJSON {
 
 	// API, Get, JSON, body tag
 	public static JsonObject getJsonBodyInfo(int i, String start, String end) throws Exception {
@@ -65,7 +65,7 @@ public class getInfo {
 		int totalCount = bodyObject.get("totalCount").getAsInt();
 
 		ArrayList<g2bDTO> al = new ArrayList<>();
-		JsonObject bodyObject2 = getInfo.getJsonBodyInfo(totalCount, start, end);
+		JsonObject bodyObject2 = getJSON.getJsonBodyInfo(totalCount, start, end);
 		JsonArray itemsArray = bodyObject2.getAsJsonArray("items");
 
 		for (int j = 0; j < itemsArray.size(); j++) {

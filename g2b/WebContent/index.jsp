@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="CSS/index.css">
 
 <title>나라장터</title>
 </head>
@@ -23,7 +23,7 @@
 	<div class="content" align="center">
 		<br />
 		<h4>나라장터 조회하기</h4>
-		<form action="g2b">
+		<form action="g2bServelt">
 			<table class="date">
 				<tr>
 					<td>From</td>
@@ -38,7 +38,12 @@
 			</table>
 			<br />
 			<p>
-				<button class="btn btn-lg btn-success" type="submit">조회</button>
+				<button class="btn btn-lg btn-success" type="submit">번호</button>
+			</p>
+		</form>
+		<form action="g2bServelt">
+			<p>
+				<button class="btn btn-lg btn-success" type="submit">기간</button>
 			</p>
 		</form>
 	</div>
