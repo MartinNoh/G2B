@@ -23,7 +23,7 @@
 	<div class="content" align="center">
 		<br />
 		<h4>나라장터 조회하기</h4>
-		<form action="g2bServelt">
+		<form action="g2bServelt2">
 			<table class="date">
 				<tr>
 					<td>From</td>

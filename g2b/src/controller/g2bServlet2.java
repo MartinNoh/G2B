@@ -16,19 +16,30 @@ import javax.servlet.http.HttpServletResponse;
 import model.g2bDTO;
 
 @WebServlet("/g2b")
-public class g2bServlet extends HttpServlet {
+public class g2bServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmm");
-		Calendar calendar = Calendar.getInstance();
+		Calendar date = Calendar.getInstance();
+		SimpleDateFormat today = new SimpleDateFormat("yyyyMMddhhmm");
+		today.format(date.getTime());
 		
-		String endDate = dateFormat.format(calendar.getTime());
-		calendar.add(calendar.DATE, -1);
-		String startDate = dateFormat.format(calendar.getTime());
+		String startDate = request.getParameter("startDate");
+		String startTime = request.getParameter("startTime");
+		String endDate = today.format(date.getTime());
+		String endTime = request.getParameter("endTime");
+		
+		System.out.println(startDate);
+		System.out.println(startTime);
+		System.out.println(startDate);
+		System.out.println(endDate);
+		System.out.println(endTime);
+		
+		startDate = onlyNumber(startDate + startTime);
+		endDate = onlyNumber(endDate + endTime);
 
 		getJSON getJSON = new getJSON();
 		ArrayList<g2bDTO> al;
